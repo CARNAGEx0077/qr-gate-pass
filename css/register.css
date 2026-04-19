@@ -1,0 +1,62 @@
+/* Register-specific styles */
+.login-card {
+  max-width: 460px;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.register-link a {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+.role-select {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px 0 42px;
+  font-family: var(--font-family);
+  font-size: 0.925rem;
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-input);
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.role-select:focus {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-input-focus);
+}
+
+.role-select:hover {
+  border-color: #C7D2CE;
+}
+
+/* API error banner */
+.api-error {
+  display: none;
+  background: var(--color-error-bg);
+  border: 1px solid var(--color-error);
+  color: var(--color-error);
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-input);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.api-error.show {
+  display: block;
+}

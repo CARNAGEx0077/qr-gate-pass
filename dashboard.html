@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TKSCT QR-based Gate Pass Dashboard — Manage gate passes, view history, and access institutional services." />
+  <title>Dashboard — TKSCT | Theni Kammavar Sangam College Of Technology</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+
+<body>
+
+  <!-- ===== Top Navigation ===== -->
+  <nav class="topbar" id="topbar">
+    <div class="topbar-inner">
+
+      <!-- Brand -->
+      <a href="dashboard.html" class="topbar-brand" id="brandLink">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5" />
+          </svg>
+        </div>
+        <span class="brand-name">TKSCT</span>
+      </a>
+
+      <!-- Right Actions -->
+      <div class="topbar-actions">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+
+        <!-- User Avatar -->
+        <div class="user-menu" id="userMenu">
+          <button class="avatar-btn" id="avatarBtn" type="button" aria-label="User menu">
+            <span class="avatar-initials">S</span>
+          </button>
+          <!-- Dropdown -->
+          <div class="user-dropdown" id="userDropdown">
+            <div class="dropdown-header">
+              <span class="dropdown-name">Student User</span>
+              <span class="dropdown-email">student@tksct.edu</span>
+            </div>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item" id="profileLink">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              Profile
+            </a>
+            <a href="login.html" class="dropdown-item dropdown-item--danger" id="logoutLink">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== Main Content ===== -->
+  <main class="dashboard">
+
+    <!-- Welcome Banner -->
+    <section class="welcome-banner" id="welcomeBanner">
+      <div class="welcome-text">
+        <h1>Welcome back, <span class="highlight">Student</span> 👋</h1>
+        <p>Theni Kammavar Sangam College Of Technology — QR Gate Pass Management System</p>
+      </div>
+      <div class="welcome-date" id="currentDate"></div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="stats-grid" id="statsGrid">
+
+      <div class="stat-card" id="statTotalPasses">
+        <div class="stat-icon stat-icon--blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="18" rx="2" />
+            <path d="M8 7h8M8 11h8M8 15h4" />
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">12</span>
+          <span class="stat-label">Total Passes</span>
+        </div>
+      </div>
+
+      <div class="stat-card" id="statApproved">
+        <div class="stat-icon stat-icon--green">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">9</span>
+          <span class="stat-label">Approved</span>
+        </div>
+      </div>
+
+      <div class="stat-card" id="statPending">
+        <div class="stat-icon stat-icon--amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">2</span>
+          <span class="stat-label">Pending</span>
+        </div>
+      </div>
+
+      <div class="stat-card" id="statRejected">
+        <div class="stat-icon stat-icon--red">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="15" y1="9" x2="9" y2="15" />
+            <line x1="9" y1="9" x2="15" y2="15" />
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">1</span>
+          <span class="stat-label">Rejected</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="quick-actions" id="quickActions">
+      <h2 class="section-title">Quick Actions</h2>
+      <div class="actions-grid">
+
+        <button class="action-card" id="actionNewPass">
+          <div class="action-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </div>
+          <span class="action-label">New Gate Pass</span>
+          <span class="action-desc">Request a new pass</span>
+        </button>
+
+        <button class="action-card" id="actionScanQR">
+          <div class="action-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+              <rect x="14" y="14" width="3" height="3" />
+              <line x1="21" y1="14" x2="21" y2="21" />
+              <line x1="14" y1="21" x2="21" y2="21" />
+            </svg>
+          </div>
+          <span class="action-label">Scan QR Code</span>
+          <span class="action-desc">Verify a gate pass</span>
+        </button>
+
+        <button class="action-card" id="actionHistory">
+          <div class="action-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </div>
+          <span class="action-label">Pass History</span>
+          <span class="action-desc">View all records</span>
+        </button>
+
+        <button class="action-card" id="actionSettings">
+          <div class="action-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg>
+          </div>
+          <span class="action-label">Settings</span>
+          <span class="action-desc">Account preferences</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- Recent Activity -->
+    <section class="recent-activity" id="recentActivity">
+      <h2 class="section-title">Recent Activity</h2>
+      <div class="activity-list">
+
+        <div class="activity-item">
+          <div class="activity-dot activity-dot--green"></div>
+          <div class="activity-content">
+            <span class="activity-text">Gate pass <strong>#GP-0412</strong> was <strong class="text-green">approved</strong></span>
+            <span class="activity-time">2 hours ago</span>
+          </div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-dot activity-dot--amber"></div>
+          <div class="activity-content">
+            <span class="activity-text">Gate pass <strong>#GP-0411</strong> is <strong class="text-amber">pending review</strong></span>
+            <span class="activity-time">5 hours ago</span>
+          </div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-dot activity-dot--green"></div>
+          <div class="activity-content">
+            <span class="activity-text">Gate pass <strong>#GP-0410</strong> was <strong class="text-green">approved</strong></span>
+            <span class="activity-time">Yesterday</span>
+          </div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-dot activity-dot--red"></div>
+          <div class="activity-content">
+            <span class="activity-text">Gate pass <strong>#GP-0409</strong> was <strong class="text-red">rejected</strong></span>
+            <span class="activity-time">2 days ago</span>
+          </div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-dot activity-dot--green"></div>
+          <div class="activity-content">
+            <span class="activity-text">Gate pass <strong>#GP-0408</strong> was <strong class="text-green">approved</strong></span>
+            <span class="activity-time">3 days ago</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="dashboard-footer" id="dashboardFooter">
+    &copy; 2026 <span>Theni Kammavar Sangam College Of Technology</span>. All rights reserved.
+  </footer>
+
+  <!-- ===== JavaScript ===== -->
+  <!-- JavaScript -->
+  <script src="js/config.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/dashboard.js"></script>
+
+</body>
+
+</html>
