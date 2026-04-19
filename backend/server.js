@@ -55,10 +55,14 @@ const globalLimiter = rateLimit({
 app.use(globalLimiter);
 
 /* ─────────────────────────────────────────
-   Body Parsing
+   Body Parsing & Static Hosting
    ───────────────────────────────────────── */
 app.use(express.json({ limit: '10kb' })); // Limit body size to prevent DoS
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+
+const path = require('path');
+// Serve static frontend files from the parent directory
+app.use(express.static(path.join(__dirname, '../')));
 
 /* ─────────────────────────────────────────
    Health Check
@@ -70,6 +74,13 @@ app.get('/api/health', (req, res) => {
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
   });
+});
+
+/* ─────────────────────────────────────────
+   Frontend Route
+   ───────────────────────────────────────── */
+app.get('/', (req, res) => {
+  res.redirect('/login.html');
 });
 
 /* ─────────────────────────────────────────
